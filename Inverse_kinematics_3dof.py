@@ -25,11 +25,12 @@ else:
     # For Theta 2 (T2)
     r1 = np.sqrt(x**2 + y**2)
     r2 = z - a1
-    phi2 = np.arctan(r2/r1)
+    r3 = np.sqrt(r1**2 + r2**2)
+    phi2 = np.arcsin(r2/r3)
 
     # phi2 in degrees
     phi2 = (phi2*180.0)/np.pi
-    r3 = np.sqrt(r1**2 + r2**2)
+    
 
     # For phi1, using law of cosines
     phi1 = np.arccos((a2**2+r3**2-a3**2)/(2*a2*r3))
