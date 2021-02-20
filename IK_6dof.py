@@ -27,7 +27,6 @@ if x==0 and y==0:
 else:
     pass
 
-
     # For Theta 1 (T1)
     if x==0 and y==0:
         T1=0
