@@ -1,2 +1,2 @@
 # Robotics
-This repository is dedicated for Robot kinematics and design.
+This repository is dedicated for Robot kinematics, design and assembly.
