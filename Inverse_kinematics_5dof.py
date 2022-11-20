@@ -1,7 +1,7 @@
 import numpy as np
 
 # Length of the links (in mm)
-a1 = 200.0
+a1 = 120.0
 a2 = 200.0
 a3 = 200.0
 
@@ -10,13 +10,13 @@ x = float(input("Enter x coordinate: "))
 y = float(input("Enter y coordinate: "))
 z = float(input("Enter z coordinate: "))
 
-# Values for radius and sweep distance of rotary part at joint 5 (Dimensions are in mm)
-rp1 = float(input("Enter the radius of rotary part at joint 5: "))
-sd1 = float(input("Enter the arc length/ sweep distance of rotary part at joint 5: "))
+# Values for radius and sweep distance of rotary part at joint 4 (Dimensions are in mm)
+rp1 = float(input("Enter the radius of rotary part at joint 4: "))
+sd1 = float(input("Enter the arc length/ sweep distance of rotary part at joint 4: "))
 
-# Values for radius and sweep distance of end-effector at joint 6 (Dimensions are in mm)
-rp2 = float(input("Enter the radius of end-effector at joint 6: "))
-sd2 = float(input("Enter the arc length/ sweep distance of end-effector at joint 6: "))
+# Values for vertical and horizontal distances of end-effector at joint 5 (Dimensions are in mm)
+v = float(input("Enter the vertical distance of the end-effector:  "))
+h = float(input("Enter the horizontal distance of the end-effector: "))
 
 if x==0 and y==0:
     print("You have entered wrong coordinates")
@@ -54,7 +54,7 @@ else:
     T2 = phi2 - phi1
 
     # Limitation for coordinates of joint 2
-    if T2 <= -180.0 or T2 >= 180.0:
+    if T2 <= -180.0 or T2 >= -60.0:
         print("The coordinates you entered are out of reach for joint 2")
     else:
         print("T2(deg): ", T2)
@@ -68,7 +68,7 @@ else:
     T3 = 180.0 - phi3
 
     # Limitation for coordinates of joint 3
-    if T3 <= 20.0 or T3 >= 180.0:
+    if T3 <= 20.0 or T3 >= 135.0:
         print("The coordinates you entered are out of reach for joint 3")
     else:
         print("T3(deg): ", T3)
@@ -78,17 +78,17 @@ else:
     T4 = (T4 * 180.0) / np.pi
 
     # Limitation for coordinates of joint 4
-    if T4 <= 0.0 or T4 >= 180.0:
+    if T4 <= -180.0 or T4 >= 180.0:
         print("The coordinates you entered are out of reach for joint 4")
     else:
         print("T4(deg): ", T4)
 
     # For Theta 5 (T5)
-    T5 = (sd2 / rp2)
+    T5 = np.arctan(v/h)
     T5 = (T5 * 180.0) / np.pi
 
     # Limitation for coordinates of joint 5
-    if T5 <= 0.0 or T5 >= 90.0:
+    if T5 <= 0.0 or T5 >= 50.0:
         print("The coordinates you entered are out of reach for joint 5")
     else:
         print("T5(deg): ", T5)
