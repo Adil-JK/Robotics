@@ -7,8 +7,8 @@
 #define SERVO5_PIN 11
 
 Servo servos[5];
-byte positions[5];
 String receivedData;
+byte servoCounter = 0;
 
 void setup()
 {
@@ -22,18 +22,15 @@ void setup()
 
 void loop()
 {
-	while (!Serial.available());
+	while (Serial.available())
+    {
+        if (servoCounter == 5) {
+            servoCounter = 0;
+        }
 
-	receivedData = Serial.readString();
-	receivedData.trim();
-	parseData(positions, receivedData);
-	driveServos(positions);
-}
-
-void driveServos(byte positions[5])
-{
-	for (byte counter = 0; counter < 5; counter++)
-	{
-		servos[counter].write(positions[counter]);
-	}
+        receivedData = Serial.readStringUntil(',');
+        receivedData.trim();
+        servos[servoCounter].write(receivedData.toInt());
+        servoCounter++;
+    };
 }
