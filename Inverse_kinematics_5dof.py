@@ -1,4 +1,8 @@
 import numpy as np
+import serial
+
+ser = serial.Serial("COM4", 9600, timeout=1);
+ser.write(b"90,90,90,90,90");
 
 # Length of the links (in mm)
 a1 = 120.0
